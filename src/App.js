@@ -43,7 +43,6 @@ function App() {
     // setFilteredMovies([...movies, {title, desc, posterUrl, rating}])
   }
 
-  console.log(filteredMovies)
   return (
     <div className="App">
       <label htmlFor="Title">Movie Title</label>
@@ -60,7 +59,7 @@ function App() {
 
       
       <Filter movies={movies} setFilteredMovies={setFilteredMovies} />
-      {filteredMovies ? (<MovieList movies = {movies} />) : (<MovieList movies = {filteredMovies} />)}
+      {filteredMovies.length === 0 ? (<MovieList movies = {movies} />) : (<MovieList movies = {filteredMovies} />) }
     </div>
   );
 }
