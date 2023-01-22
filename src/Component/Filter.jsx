@@ -4,22 +4,23 @@ const Filter = ({ movies, setFilteredMovies }) => {
   const titleFilterRef = useRef("");
   const rateFilterRef = useRef("");
 
-  const handleFilter = () => {
-    const titleFilter = titleFilterRef.current.value;
-    const rateFilter = rateFilterRef.current.value;
+  const handleFilter = (event) => {
+    const filter = {[event.currentTarget.name] : event.currentTarget.value}
 
     const filterMovies = movies.filter(
-      (movie) => movie.title === titleFilter || movie.rating === rateFilter
+      (movie) => movie.title === filter.title || movie.rating === filter.rating
     );
     setFilteredMovies(filterMovies)
+
+    console.log(filter.rating)
   };
 
   return (
     <div>
       <label htmlFor="title">title</label>
-      <input type="text" name="title" ref={titleFilterRef} />
+      <input type="text" name="title" onChange={handleFilter} />
       <label htmlFor="rating">rate</label>
-      <input type="text" name="rating" ref={rateFilterRef} />
+      <input type="number" name="rating" onChange={handleFilter} />
       <button type="submit" onClick={handleFilter}>
         Filter
       </button>

@@ -1,14 +1,29 @@
+import "../assets/styles/movieCard.css"
+import { useNavigate } from "react-router-dom"
 
 
 
-const MovieCard = ({movie}) => {
+const MovieCard = (props) => {
+
+    const {movie, setSelectedMovie} = props
+
+    const navigate = useNavigate()
+
+    const handleMovieDesc = () => {
+        setSelectedMovie(movie)
+        navigate("/movie-details")
+    }
+
+    
 
     return(
-        <div style={{display:"inline-block", width:"400px", height:"600px"}}>
-            <img src={movie.postUrl} alt={`${movie.title} poster`} />
-            <h2>{movie.title}</h2>
-            <p>{movie.desc}</p>
-            <p>{movie.rating}</p>
+        <div className="movie-card" onClick={handleMovieDesc} >
+            <div className="poster-container" style={{backgroundImage:`url(${movie.posterUrl}) `}}>
+            {/* <img className="poster" src={movie.posterUrl} alt={`${movie.title} poster`} /> */}
+            </div>
+            <h2 className="title">{movie.title}</h2>
+            <p className="description">{movie.desc}</p>
+            <p className="rating">{movie.rating}</p>
         </div>
     )
 }
